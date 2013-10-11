@@ -34,8 +34,8 @@
  * 
  * There is no way to instantiate WP_Renderer. It is a static class. It works
  * for frontend and admin areas. You can access most of the dom. You can use
- * add_renderer() in 'admin' or 'front' hooks, and only renderers that need to run
- * will run. The add_renderer() and remove_renderer() functions are similar in
+ * add_renderer() for admin or front hooks, and only renderers that need to run
+ * will run. the add_renderer() and remove_renderer() functions are similar in
  * usage to add_action() and remove_action() functions, eg:
  * 
  *   add_renderer($hook, $callback, $priority);
@@ -56,6 +56,12 @@
  *        div#wpwrap, therefore missing closing tags for div#wpwrap and body
  * front: accesses from enqueued scripts until just before the closing tag of
  *        div#wpwrap, therefore missing closing tags for div#wpwrap and body
+ * 
+ * This help makes it sound complicated...really all you need to do is use
+ * add_renderer(), pass in $hook (admin or front), pass in $callback and pass in
+ * $priority ($priority is optionally, default is 10). From there your callback
+ * is called, and as long as it returns html markup to pass to the next renderer
+ * then all will be good.
  * 
  * 
  * Properties
